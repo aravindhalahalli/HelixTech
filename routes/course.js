@@ -2,12 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 // Courses model
-// const Students = require('../models/students');
 const Courses = require("../models/course");
 
-// @route   GET /api/students/
-// @desc    Get all students
-// @access  Public
 router.get("/", async (req, res) => {
   try {
     const courses = await Courses.find({});
@@ -18,9 +14,6 @@ router.get("/", async (req, res) => {
 });
 
 
-// @route   POST /api/students/
-// @desc    Create a student
-// @access  Public
 router.post("/", async (req, res) => {
   try {
     const newCourse = await Courses.create({
@@ -34,28 +27,22 @@ router.post("/", async (req, res) => {
   }
 });
 
-// @route   PUT /api/students/:id
-// @desc    Update a student
-// @access  Public
 router.put("/:id", async (req, res) => {
   try {
-    const updatedStudent = await Students.findByIdAndUpdate(
+    const updatedCourse = await Courses.findByIdAndUpdate(
       req.params.id,
       req.body
     );
-    res.send({ message: "The student was updated" });
+    res.send({ message: "The course was updated" });
   } catch (err) {
     res.status(400).send({ error: err });
   }
 });
 
-// @route   DELETE /api/students/:id
-// @desc    Delete a student
-// @access  Public
 router.delete("/:id", async (req, res) => {
   try {
-    const removeStudent = await Students.findByIdAndRemove(req.params.id);
-    res.send({ message: "The student was removed" });
+    const removeCourse = await Courses.findByIdAndRemove(req.params.id);
+    res.send({ message: "The course was removed" });
   } catch (err) {
     res.status(400).send({ error: err });
   }
